@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8"> 
+  </head>
+<body>
+  <form>
+    <input type="text" id="nric">
+    <input type="button" value="驗證" onclick="validate()">
+    <p id="result"></p>
+  </form>
+  <script>
+    function validate(){
+      var code = document.getElementById('nric').value;
+      if( code == ""){
+        alert("內容不得為空");
+      } else if (!isNaN(code)) {
+        alert("內容不得為數字！");
+      } else if (code.length != 10){
+        alert('長度必須為10個字元！');
+      } else {
+        document.getElementById('result').innerHTML = '通過驗證！';
+      }
+
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>  
+</head>
+<body>
+  <img id="image" src="img/on.jpg">
+  <button class="button" onclick="toggleLight();">ON<br>-<br>OFF</button>
+  <div class="div" id="timer">5</div>
+
+  <script>
+    var state = true;    
+
+    function toggleLight() {
+      var image = document.getElementById('image');
+      state = !state;
+      image.src = state ? "img/on.jpg" : "img/off.jpg";
+    }
+
+    var timeLeft = 5;
+
+    function countDownTimer() {
+      timeLeft = timeLeft - 1;
+      if (timeLeft <= 0) {
+        document.getElementById("image").src = "img/off.jpg";
+        clearInterval(setting);
+      }
+      document.getElementById("timer").innerHTML = timeLeft;
+    }
+
+    var setting = setInterval(countDownTimer, 1000);
+
+  </script>
+</body>  
+</html>
