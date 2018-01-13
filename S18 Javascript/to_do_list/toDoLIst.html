@@ -86,12 +86,11 @@
       span.classList.add('col-md-8','text-center', 'span_style');
       replaceButton.classList.add('btn','btn-default');
       removeButton.classList.add('btn','btn-danger');
+      document.getElementById('todolist').classList.add("todolist");
 
       //add to ToDoList       
       document.getElementById('todolist').appendChild(todo);
-
-      //add css class
-      document.getElementById('todolist').classList.add("todolist");
+      
       //Clear input value
       document.getElementById('input').value = "";
     }    
