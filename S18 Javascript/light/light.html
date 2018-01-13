@@ -1,12 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <img id="image" src="img/on.jpg">
-  <button class="button" onclick="toggleLight();">ON<br>-<br>OFF</button>
-  <div class="div" id="timer">5</div>
-
+  <div class="container">
+    <div class="container-fluid text-center">
+      <h1>Toggle Light Project</h1>
+      <hr/>
+    </div>
+    <br>
+    <div class="container-fluid row">
+      <div class="col-md-10">
+        <img id="image" class="img-responsive img-circle" src="img/on.jpg">    
+      </div>
+      <div class="col-md-2 text-center">
+        <div>
+          <h2>User Input</h2>
+          <input id="input" type="text">
+          <br><br>
+          <button class="btn btn-default" onclick="setTime()">Set Timer</button>
+        </div>
+        <div>
+          <h2>Timer</h2>
+          <div class="div btn btn-default" id="timer">5</div>  
+        </div>        
+        <div>
+          <h2>Toggle</h2>
+          <button class="btn btn-default" onclick="toggleLight();">ON<br>-<br>OFF</button>      
+        </div>        
+      </div>
+    </div>
+  </div>
   <script>
     var state = true;    
 
@@ -25,6 +54,25 @@
         clearInterval(setting);
       }
       document.getElementById("timer").innerHTML = timeLeft;
+    }
+
+
+    //set timer 
+    function setTime(){    
+      var input = document.getElementById("input").value;
+
+      //transfer string to integer
+      input = parseInt(input);
+
+      //check if input is integer or not
+      if(!isNaN(input)){
+        document.getElementById("timer").innerHTML = input;      
+        timeLeft = input;               
+      } else {      
+        alert('請輸入數字！');  
+        document.getElementById("input").value = "";
+      }
+      
     }
 
     var setting = setInterval(countDownTimer, 1000);
