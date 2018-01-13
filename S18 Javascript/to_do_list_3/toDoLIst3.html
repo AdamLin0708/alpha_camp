@@ -85,10 +85,15 @@
         var check = confirm("確定已經完成此筆To-Do?");
         var todofinish = this.parentNode; 
         if(check){
-          span.classList.add('span_finish');
+          //add class span_finish to span
+          span.classList.add('span_finish');          
+
+          //check if class span_emergency exists
           if(span.classList.contains('span_emergency')){
             span.classList.remove('span_emergency');
           }
+
+          //check if class span_no_emergency exists
           if(span.classList.contains('span_no_emergency')){
             span.classList.remove('span_no_emergency');
           }
@@ -99,7 +104,10 @@
       finishButton.textContent = "V";
       todo.appendChild(finishButton);
 
+      //priority radio setting 
       var priority = document.getElementById('priority_radio');
+
+      //check if priority is emergency then add relative css class
       if(priority.checked){
         span.classList.add('span_emergency');
       } else {
