@@ -1,12 +1,40 @@
 <!DOCTYPE html>
 <html lang="zh">
-<head>
+<head>  
   <meta charset="utf-8">
-  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    .todolist{
+      border: 1px solid black;
+      background-color: lightyellow;
+      padding: 20px 10px;
+    }
+    .span_style{
+      font-size: x-large; 
+      margin: 2px 0;     
+    }
+  </style>
 </head>
 <body>
-  <input type="text" id="input"><button onclick="createToDo()">+</button>  
-  <div id="todolist"></div>
+  <div class="container">
+    <div class="container-fluid text-center">
+      <h1>To Do List</h1>      
+      <hr/>
+    </div>    
+    <div class="container-fluid text-center">
+      <input type="text" id="input">
+      <button class="btn btn-default" onclick="createToDo()">+</button>      
+    </div>
+    <br>
+    <div class="container-fluid row">
+      <div id="todolist" class="col-md-4 col-md-push-4"></div>
+    </div>    
+  </div>
+  
+  
   <script>
     function createToDo(){
 
@@ -40,17 +68,30 @@
 
       //removeButton
       removeButton.onclick = function(){
-        var todoList = document.getElementById("todolist");
-        var tododelete = this.parentNode;
-
-        todoList.removeChild(tododelete);
+        var check = confirm("確定要刪除此筆To-Do?");
+        if(check){
+          var todoList = document.getElementById("todolist");
+          var tododelete = this.parentNode;    
+          todoList.removeChild(tododelete);  
+          if(todoList.childElementCount == 0){
+            todoList.classList.remove('todolist');
+          }
+        }        
       }
       removeButton.textContent = "V";
       todo.appendChild(removeButton);
 
-      //add to ToDoList 
+      //add class to element
+      todo.classList.add('row');
+      span.classList.add('col-md-8','text-center', 'span_style');
+      replaceButton.classList.add('btn','btn-default');
+      removeButton.classList.add('btn','btn-danger');
+
+      //add to ToDoList       
       document.getElementById('todolist').appendChild(todo);
 
+      //add css class
+      document.getElementById('todolist').classList.add("todolist");
       //Clear input value
       document.getElementById('input').value = "";
     }    
