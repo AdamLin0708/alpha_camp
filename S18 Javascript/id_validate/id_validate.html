@@ -1,14 +1,40 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
-  <head>
-    <meta charset="utf-8"> 
-  </head>
+<html lang="zh">
+<head>  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    .form{
+      background-color: lightyellow;
+      border: 1px solid gray;
+      padding: 20px 10px;
+    }
+  </style>
+</head>
 <body>
-  <form>
-    <input type="text" id="nric">
-    <input type="button" value="驗證" onclick="validate()">
-    <p id="result"></p>
-  </form>
+  <div class="container">
+    <div class="container-fluid text-center">
+      <h1>ID Validator</h1> 
+      <hr/>     
+    </div>
+    <div class="container-fluid text-center row">
+      <div class="col-md-4 col-md-push-4 form">
+        <h4>請輸入身分證字號</h4>
+        <br>
+        <form>
+          <input type="text" id="nric">
+          <br><br>
+          <input type="button" class="btn btn-default" value="驗證" onclick="validate()">
+          <br><br>
+          <p id="result"></p>
+        </form>    
+      </div>      
+    </div>
+  </div>
+  
   <script>
     function validate(){
       var code = document.getElementById('nric').value;
@@ -19,7 +45,22 @@
       } else if (code.length != 10){
         alert('長度必須為10個字元！');
       } else {
-        document.getElementById('result').innerHTML = '通過驗證！';
+
+        //判斷是否為男生
+        if(code[1] == '1'){
+          document.getElementById('result').innerHTML = '某男通過驗證！';
+        } 
+        //判斷是否為女生
+        else if (code[1] == '2'){
+          document.getElementById('result').innerHTML = '某女通過驗證！';
+        } 
+        //若都不是，就重新輸入
+        else{
+          document.getElementById('result').innerHTML = "";
+          alert('身分證字號輸入錯誤，請重新輸入！')
+          document.getElementById('nric').value = "";
+        }
+        
       }
 
     }
