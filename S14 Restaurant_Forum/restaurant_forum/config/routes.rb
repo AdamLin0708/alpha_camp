@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   #admin
   namespace :admin do
 
-    # resources :restaurants
+    resources :restaurants
     root "restaurants#index"
 
   end
